@@ -8,11 +8,11 @@ username: prueba, prueba123
 
 ## FRONTEND
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://taskplannerieti2021.herokuapp.com/users)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://taskplannerieti2021.herokuapp.com)
 
 ## BACKEND
 
-Deployed to heroky using heroku.
+Deployed to heroku.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://task-ieti-hfs.herokuapp.com/)
 
