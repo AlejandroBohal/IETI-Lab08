@@ -19,10 +19,10 @@ export const App = () => {
         <Switch>
           <Route exact path="/" component={() => <Login/>}/> 
           <Route exact path="/taskPlanner" component={ () =>(
-            <TaskPlannerApp tasks={tasks}/>
+            <TaskPlannerApp/>
           )}/>
           <Route exact path="/createTask" component={ () =>(
-            <NewTask addTask={addTask}/> 
+            <NewTask/> 
           )}/>
           <Route exact path="/register" component={ () =>(
             <UserProfile /> 

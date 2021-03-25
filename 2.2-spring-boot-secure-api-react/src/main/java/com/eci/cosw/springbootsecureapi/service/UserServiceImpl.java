@@ -29,10 +29,10 @@ public class UserServiceImpl
     @PostConstruct
     private void populateSampleData()
     {
-        users.add( new User( "test@mail.com", "password", "Andres", "Perez" ) );
-        users.add( new User( "prueba@mail.com", "prueba123", "prueba", "prueba" ) );
-        users.add( new User( "prueba2@mail.com", "prueba123", "prueba2", "prueba2" ) );
-        users.add( new User( "prueba3@mail.com", "prueba123", "prueba2", "prueba2" ) );
+        users.add( new User( "test@mail.com", "password") );
+        users.add( new User( "prueba@mail.com", "prueba123") );
+        users.add( new User( "prueba2@mail.com", "prueba123") );
+        users.add( new User( "prueba3@mail.com", "prueba123") );
     }
 
 
@@ -51,7 +51,7 @@ public class UserServiceImpl
     @Override
     public User createUser( User user )
     {
-        boolean exists = users.stream().anyMatch(userF -> userF.getEmail().equals(user.getEmail()));
+        boolean exists = users.stream().anyMatch(userF -> userF.getUsername().equals(user.getUsername()));
         if (!exists){
             users.add(user);
         }
@@ -61,8 +61,12 @@ public class UserServiceImpl
     @Override
     public User findUserByEmail( String email )
     {
-        List<User> searchedUser = users.stream().filter(user -> user.getEmail().equals(email)).collect(Collectors.toList());
-        return  searchedUser.get(0);
+        System.out.println(email);
+        User searchedUser = users.stream()
+                .filter(user -> user.getUsername().equals(email.trim().toLowerCase()))
+                .findFirst().orElse(null);
+
+        return  searchedUser;
     }
 
     @Override

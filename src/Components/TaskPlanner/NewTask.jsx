@@ -13,6 +13,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 import usersExample from '../Login/exampleUsers';
 import { useHistory,Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const NewTask = ({ addTask }) => {
+export const NewTask = () => {
     const [description, setDescription] = useState("");
     const [responsible, setResponsible] = useState("");
     const [dueDate, setDueDate] = useState(new Date());
@@ -45,6 +46,12 @@ export const NewTask = ({ addTask }) => {
     const classes = useStyles();
     const history = useHistory();
     const users = JSON.parse(localStorage.getItem("users")) || [];
+    const token = localStorage.getItem("token")
+    const axiosClient = axios.create({
+        baseURL: 'https://task-ieti-hfs.herokuapp.com/api/',
+        timeout: 1000,
+        headers: {'Authorization': 'Bearer ' + token}
+    });
     const canExecute = (responsible) => {
         const user = users.find(user => user.userName === responsible);
         const userExample = usersExample.find(user => user.userName === responsible);
@@ -52,6 +59,15 @@ export const NewTask = ({ addTask }) => {
             alert("Responsible not registered.");
         }
         return user || userExample;
+    }
+    const addTask = (task) =>{
+        axiosClient.post('', task,
+        {headers:{"Content-type":"application/json"}}).then(() =>{
+            history.push("/taskPlanner");
+        }).catch((e) =>{
+            console.log(e)
+            alert(e)
+        });   
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,15 +78,13 @@ export const NewTask = ({ addTask }) => {
 
             const newTask = {
                 description,
-                responsible: {
-                    name: responsible,
-                    email: userFinded.email
-                },
+                name: responsible,
+                email: userFinded.email,
                 status,
                 dueDate
             }
             addTask(newTask);
-            history.push("/taskPlanner");
+            
         }
     }
     if (!JSON.parse(localStorage.getItem("user")) || JSON.parse(localStorage.getItem("user")).loggingStatus !== "loggedIn") {

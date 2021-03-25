@@ -22,7 +22,7 @@ export const Login = () => {
                 { loggingStatus: "loggedIn", username: userName, password, email: user.email}
             ));
             axios.post('https://task-ieti-hfs.herokuapp.com/user/login', {
-                email: user.email,
+                username: user.email,
                 password: user.password
                },
                {headers:{"Content-type":"application/json"}})

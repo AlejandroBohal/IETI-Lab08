@@ -9,6 +9,7 @@ export const NavBar = ({handleOpen}) => {
     const history = useHistory();
     const logOut = () =>{
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         history.push("/");
     };
     return (

@@ -37,8 +37,7 @@ public class UserController
 
         String username = login.getUsername();
         String password = login.getPassword();
-
-        User user = userService.findUserByEmail( login.getEmail() );
+        User user = userService.findUserByEmail( login.getUsername() );
 
         if ( user == null )
         {
@@ -46,7 +45,7 @@ public class UserController
         }
 
         String pwd = user.getPassword();
-        String email = user.getEmail();
+        String email = user.getUsername();
 
         if ( !username.equals(email) || !password.equals( pwd ) )
         {

@@ -1,4 +1,10 @@
-# IETI LAB 6
+# IETI LAB 8
+
+**Test user**
+
+username: prueba, prueba123
+
+(Para añadir una tarea el nombre de usuario debe estar registrado.)
 
 ## FRONTEND
 
@@ -6,30 +12,44 @@
 
 ## BACKEND
 
-Deployed to heroky using heroku containers.
+Deployed to heroky using heroku.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://ieticontainers.herokuapp.com/)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://task-ieti-hfs.herokuapp.com/)
 
-
-![](https://media.discordapp.net/attachments/400395275673272342/820768356499718174/unknown.png?width=1025&height=51)
 
 ## ENDPOINTS
 
-GET https://ieticontainers.herokuapp.com/api/v1/users
+In order to get the authorization token you need to do a post to the following endpoint with the body example.
 
-POST https://ieticontainers.herokuapp.com/api/v1/users
 
-**Body Example**
-
-![](https://media.discordapp.net/attachments/400395275673272342/820768746372857906/unknown.png)
-
-PUT https://ieticontainers.herokuapp.com/api/v1/users
+POST https://task-ieti-hfs.herokuapp.com/user/login
 
 **Body Example**
 
-![](https://media.discordapp.net/attachments/400395275673272342/820768999511818310/unknown.png)
+    {
+        "username":"prueba@mail.com",
+        "password":"prueba123"
+    }
 
-DELETE https://ieticontainers.herokuapp.com/api/v1/users/{userId}
+### Tasks
+
+Authorization header is required.
+
+GET https://task-ieti-hfs.herokuapp.com/api
+
+POST https://task-ieti-hfs.herokuapp.com/api
+
+**Body Example**
+
+    {
+        "description":"example",
+        "name": "prueba",
+        "email": "prueba@mail.com",
+        "status": "ready",
+        "dueDate" :"09/09/2020"
+    }
+
+
 
 
 
