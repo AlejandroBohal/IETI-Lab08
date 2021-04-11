@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Santiago Carrillo
@@ -60,7 +61,8 @@ public class UserServiceImpl
     @Override
     public User findUserByEmail( String email )
     {
-        return (User) users.stream().filter(user -> user.getEmail() == email);
+        List<User> searchedUser = users.stream().filter(user -> user.getEmail() == email).collect(Collectors.toList());
+        return  searchedUser.get(0);
     }
 
     @Override
