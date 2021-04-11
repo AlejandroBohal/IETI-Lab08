@@ -61,7 +61,7 @@ public class UserServiceImpl
     @Override
     public User findUserByEmail( String email )
     {
-        List<User> searchedUser = users.stream().filter(user -> user.getEmail() == email).collect(Collectors.toList());
+        List<User> searchedUser = users.stream().filter(user -> user.getEmail().equals(email)).collect(Collectors.toList());
         return  searchedUser.get(0);
     }
 
