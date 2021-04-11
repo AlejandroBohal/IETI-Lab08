@@ -29,6 +29,9 @@ public class UserServiceImpl
     private void populateSampleData()
     {
         users.add( new User( "test@mail.com", "password", "Andres", "Perez" ) );
+        users.add( new User( "prueba@mail.com", "prueba123", "prueba", "prueba" ) );
+        users.add( new User( "prueba2@mail.com", "prueba123", "prueba2", "prueba2" ) );
+        users.add( new User( "prueba3@mail.com", "prueba123", "prueba2", "prueba2" ) );
     }
 
 
@@ -47,13 +50,17 @@ public class UserServiceImpl
     @Override
     public User createUser( User user )
     {
-        return users.get( 0 );
+        boolean exists = users.stream().anyMatch(userF -> userF.getEmail() == user.getEmail());
+        if (!exists){
+            users.add(user);
+        }
+        return user;
     }
 
     @Override
     public User findUserByEmail( String email )
     {
-        return users.get( 0 );
+        return (User) users.stream().filter(user -> user.getEmail() == email);
     }
 
     @Override
