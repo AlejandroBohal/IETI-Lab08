@@ -51,7 +51,7 @@ public class UserServiceImpl
     @Override
     public User createUser( User user )
     {
-        boolean exists = users.stream().anyMatch(userF -> userF.getEmail() == user.getEmail());
+        boolean exists = users.stream().anyMatch(userF -> userF.getEmail().equals(user.getEmail()));
         if (!exists){
             users.add(user);
         }
